@@ -1,8 +1,8 @@
-import {AfterViewChecked, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {User} from '../../models/user.model';
 import {Observable, tap} from 'rxjs';
 import {Store} from '@ngrx/store';
-import {MainStore} from '../../models/main-store.model';
+import {UserStore} from '../../models/user-store.model';
 
 @Component({
   selector: 'app-header',
@@ -11,17 +11,12 @@ import {MainStore} from '../../models/main-store.model';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  public showLoginButton = true;
-  public showLogoutButton = true;
 
-  user$: Observable<User | undefined>;
+  user$: Observable<any>;
 
-  constructor(private store: Store<MainStore>) {
+  constructor(private store: Store<UserStore>) {
     this.user$ = store.select('user').pipe(
-      tap(user => {
-        this.showLoginButton = !!user;
-        this.showLogoutButton = !user;
-      })
+      // tap(u => { console.log(u)})
     );
   }
 

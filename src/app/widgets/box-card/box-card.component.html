@@ -1,0 +1,9 @@
+<div class="card" *ngIf="box">
+  <img class="card-img-top" [src]="box.iconUrl" [alt]="box.name">
+  <div class="card-body">
+    <h5 class="card-title">{{box.name}}</h5>
+    <p class="card-text">cost: {{box.cost}}</p>
+    <a *ngIf="!buy" [routerLink]="['/', 'box', box.id]" class="btn btn-primary">View</a>
+    <a *ngIf="buy" (click)="buyBox()" class="btn btn-primary">Buy now!</a>
+  </div>
+</div>

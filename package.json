@@ -18,9 +18,13 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "@apollo/client": "^3.7.4",
     "@ngrx/store": "^14.3.2",
+    "apollo-angular": "^4.2.0",
     "bootstrap": "^5.2.3",
+    "graphql": "^16.6.0",
     "rxjs": "~7.5.0",
+    "save": "^2.9.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

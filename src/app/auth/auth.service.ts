@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import {select, State, Store} from '@ngrx/store';
+import {UserStore} from '../models/user-store.model';
+import {take} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,9 +9,16 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   isLoggedIn = false;
 
-  constructor() { }
+  constructor(private store: Store<UserStore>)
+  { }
 
   isAuthenticated() {
-    return this.isLoggedIn;
+    let state;
+
+    this.store.pipe(select('user'), take(1)).subscribe(
+      s => state = s
+    );
+
+    return !!state && !!state['user'];
   }
 }

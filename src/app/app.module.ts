@@ -14,7 +14,13 @@ import {AuthService} from './auth/auth.service';
 import {AuthGuard} from './auth/auth.guard';
 import { UserComponent } from './widgets/user/user.component';
 import {StoreModule} from '@ngrx/store';
-import {mainReducer} from './reducers/main-store.reducer';
+import {userReducer} from './reducers/user.reducer';
+import {APOLLO_OPTIONS, ApolloModule} from 'apollo-angular';
+import {InMemoryCache} from '@apollo/client/core';
+import {HttpLink} from 'apollo-angular/http';
+import {HttpClientModule} from '@angular/common/http';
+import {boxReducer} from './reducers/box.reducer';
+import { BoxCardComponent } from './widgets/box-card/box-card.component';
 
 @NgModule({
   declarations: [
@@ -26,14 +32,33 @@ import {mainReducer} from './reducers/main-store.reducer';
     FullComponent,
     FooterComponent,
     HeaderComponent,
-    UserComponent
+    UserComponent,
+    BoxCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({main: mainReducer})
+    ApolloModule,
+    HttpClientModule,
+    StoreModule.forRoot({user: userReducer, boxes: boxReducer})
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [
+    AuthService,
+    AuthGuard,
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory(httpLink: HttpLink) {
+        return {
+          cache: new InMemoryCache(),
+          link: httpLink.create({
+            uri: 'https://api-staging.csgoroll.com/graphql',
+            withCredentials: true
+          })
+        }
+      },
+      deps: [HttpLink]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

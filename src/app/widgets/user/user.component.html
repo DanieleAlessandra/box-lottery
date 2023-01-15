@@ -1,1 +1,28 @@
-<p>user works!</p>
+<header class="p-3 mb-3 border-bottom" *ngIf="(user$ | async)?.user as u">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+
+      </ul>
+
+      <span class="mx-3">{{u.id}}</span>
+
+      <div class="dropdown text-end">
+        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+           data-bs-toggle="dropdown" aria-expanded="false">
+          {{balance}}
+        </a>
+        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+          <li *ngFor="let w of u.wallets">
+            <div class="dropdown-item d-flex">
+              <span class="mx-2">{{w.id}}</span>
+              <span class="flex-grow-1 text-end">{{w.amount}}</span>
+              <span class="mx-2">{{w.currency}}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

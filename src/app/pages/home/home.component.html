@@ -1,1 +1,1 @@
-<p>home works!</p>
+<button *ngIf="(user$ | async)?.user" class="btn btn-outline-primary" type="button" (click)="navigateToList()">Go to box list</button>

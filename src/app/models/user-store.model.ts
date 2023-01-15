@@ -1,6 +1,6 @@
 import {User} from './user.model';
 
-export interface MainStore {
+export interface UserStore {
   user?: User;
   balance: number;
 }

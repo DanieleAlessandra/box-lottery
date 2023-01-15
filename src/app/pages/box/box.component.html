@@ -1,1 +1,7 @@
-<p>box works!</p>
+<div class="container">
+  <app-box-card
+    [box]="box"
+    [buy]="true"
+    (onBuyBox)="buyBox($event)"
+  ></app-box-card>
+</div>

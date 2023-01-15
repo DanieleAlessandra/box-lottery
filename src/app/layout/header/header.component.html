@@ -14,7 +14,7 @@
             <li><a href="https://www.danielealessandra.com" class="text-white" target="_blank">My blog</a></li>
             <li><a href="https://www.linkedin.com/in/danielealessandra/" class="text-white" target="_blank">LinkedIn</a>
             </li>
-            <li><a href="MAILTO:lottery.poc@danielealessandra.com" class="text-white">Email me</a></li>
+            <li><a href="MAILTO:lottery.poc@danielealessandra.com" class="text-white" target="_blank">Email me</a></li>
           </ul>
         </div>
       </div>
@@ -34,10 +34,10 @@
                 aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <button *ngIf="showLoginButton" class="btn btn-primary" type="button" (click)="goToLoginPage()">Login</button>
-        <button *ngIf="!showLoginButton" class="btn btn-outline-primary" type="button" (click)="logout()">Logout</button>
+        <button *ngIf="!(user$ | async)?.user" class="btn btn-primary" type="button" (click)="goToLoginPage()">Login</button>
+        <button *ngIf="(user$ | async)?.user" class="btn btn-outline-primary" type="button" (click)="logout()">Logout</button>
       </div>
     </div>
   </div>
 </header>
-<div>{{user$ | async}}</div>
+<app-user></app-user>
