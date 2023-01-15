@@ -21,6 +21,7 @@ import {HttpLink} from 'apollo-angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {boxReducer} from './reducers/box.reducer';
 import { BoxCardComponent } from './widgets/box-card/box-card.component';
+import { SpinnerComponent } from './widgets/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { BoxCardComponent } from './widgets/box-card/box-card.component';
     FooterComponent,
     HeaderComponent,
     UserComponent,
-    BoxCardComponent
+    BoxCardComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

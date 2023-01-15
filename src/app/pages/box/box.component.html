@@ -1,7 +1,31 @@
 <div class="container">
-  <app-box-card
-    [box]="box"
-    [buy]="true"
-    (onBuyBox)="buyBox($event)"
-  ></app-box-card>
+  <div class="row">
+    <div class="col-4">
+      <app-box-card
+        [box]="box"
+        [buy]="true"
+        (onBuyBox)="buyBox($event)"
+      ></app-box-card>
+    </div>
+  </div>
 </div>
+
+
+<div class="modal" tabindex="-1" id="winningModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Your Prize!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="!!prizeWon">
+        <h5>You won this {{prizeWon.name}}</h5>
+        <p>Value: {{prizeWon.value}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-spinner *ngIf="loadingAnimation">{{loadingAnimation}}</app-spinner>
